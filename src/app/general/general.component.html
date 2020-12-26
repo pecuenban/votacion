@@ -1,3 +1,9 @@
 <div class="contenedor">
-  <ng-container *ngFor="let votable of votables">a </ng-container>
+  <ng-container *ngFor="let votable of votables">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{votable.nombre}}</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </ng-container>
 </div>
