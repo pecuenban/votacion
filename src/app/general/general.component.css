@@ -5,7 +5,7 @@
   padding: 50px 16px;
 }
 .votado {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 mat-card-header.mat-card-header {
   text-align: center;
