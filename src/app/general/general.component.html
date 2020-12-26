@@ -8,7 +8,7 @@
 </mat-toolbar>
 <div class="contenedor">
 	<ng-container *ngFor="let votable of votables">
-		<mat-card class="example-card" [class.votado]="votable.votado" (click)="votar(votable)">
+		<mat-card matRipple class="example-card" [class.votado]="votable.votado" (click)="votar(votable)">
 			<mat-card-header>
 				<mat-card-title>{{votable.nombre}}</mat-card-title>
 			</mat-card-header>
