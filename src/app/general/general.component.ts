@@ -11,22 +11,7 @@ import { ConexionService } from "../conexion.service";
 export class GeneralComponent implements OnInit {
   votados = 0;
   total = 5;
-  votables = [
-    {
-      id: 1,
-      votado: false,
-      nombre: "test 1 asdfa jfasfasdhfasdhfasdfhasjdfhasdjfhasdfjfdh"
-    },
-    { id: 2, votado: false, nombre: "test 2" },
-    { id: 3, votado: false, nombre: "test 3" },
-    { id: 4, votado: false, nombre: "test 4" },
-    { id: 5, votado: false, nombre: "test 5" },
-    { id: 1, votado: false, nombre: "test 1" },
-    { id: 2, votado: false, nombre: "test 2" },
-    { id: 3, votado: false, nombre: "test 3" },
-    { id: 4, votado: false, nombre: "test 4" },
-    { id: 5, votado: false, nombre: "test 5" }
-  ];
+  votables = [];
   constructor(
     private _snackBar: MatSnackBar,
     private router: Router,
@@ -36,7 +21,8 @@ export class GeneralComponent implements OnInit {
   ngOnInit() {
     this.conexionService.votables().subscribe({
       next: data => {
-        console.log(data);
+        let obj: any = data;
+        this.votables = obj;
       },
       error: error => {
         console.error(error);
