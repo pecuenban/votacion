@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   registroInfo = {
     username: ""
   };
+  loginInfo = {
+    username: "",
+    pass: ""
+  };
   constructor(protected conexionService: ConexionService) {}
   error: boolean = false;
   ngOnInit() {}
@@ -29,7 +33,16 @@ export class LoginComponent implements OnInit {
     username: new FormControl("", [Validators.required, Validators.email])
   });
 
-  submit() {}
+  submit() {
+    this.conexionService.autenticarUsuario(this.loginInfo).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
   submit2() {
     this.conexionService.registro(this.registroInfo).subscribe({
       next: data => {

@@ -5,12 +5,12 @@
 		<form *ngIf="!registro" [formGroup]="form" (ngSubmit)="submit()">
 			<p>
 				<mat-form-field>
-					<input type="text" matInput placeholder="Mail" formControlName="username">
+					<input [(ngModel)]="loginInfo.username" type="text" matInput placeholder="Mail" formControlName="username">
             </mat-form-field>
 			</p>
 			<p>
 				<mat-form-field>
-					<input type="password" matInput placeholder="Contraseña" formControlName="pass">
+					<input [(ngModel)]="loginInfo.pass" type="password" matInput placeholder="Contraseña" formControlName="pass">
             </mat-form-field>
 			</p>
 
