@@ -17,11 +17,15 @@ export class ConexionService {
     })
   };
 
-  autenticarUsuario(usuario: any): Observable<any> {
-    return this.http.post<any>(this.url + "/auth", usuario, this.httpOptions);
+  autenticarUsuario(usuario) {
+    return this.http.post(this.url + "/auth", usuario, this.httpOptions);
   }
 
-  registro(usuario: any): Observable<any> {
-    return this.http.post<any>(this.url + "/user", usuario, this.httpOptions);
+  registro(usuario) {
+    return this.http.post(this.url + "/user", usuario, this.httpOptions);
+  }
+
+  votables() {
+    return this.http.get(this.url + "/votable", this.httpOptions);
   }
 }

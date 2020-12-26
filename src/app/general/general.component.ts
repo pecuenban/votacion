@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { ConexionService } from "../conexion.service";
 
 @Component({
   selector: "app-general",
@@ -26,9 +27,22 @@ export class GeneralComponent implements OnInit {
     { id: 4, votado: false, nombre: "test 4" },
     { id: 5, votado: false, nombre: "test 5" }
   ];
-  constructor(private _snackBar: MatSnackBar, private router: Router) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    protected conexionService: ConexionService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.conexionService.votables().subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
   salir() {
     this.router.navigate([""]);
   }
