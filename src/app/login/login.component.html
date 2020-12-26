@@ -1,0 +1,44 @@
+<mat-card>
+	<mat-card-title *ngIf="!registro">Iniciar sesión</mat-card-title>
+	<mat-card-title *ngIf="registro">Registro</mat-card-title>
+	<mat-card-content>
+		<form *ngIf="!registro" [formGroup]="form" (ngSubmit)="submit()">
+			<p>
+				<mat-form-field>
+					<input type="text" matInput placeholder="Mail" formControlName="username">
+            </mat-form-field>
+			</p>
+			<p>
+				<mat-form-field>
+					<input type="password" matInput placeholder="Contraseña" formControlName="pass">
+            </mat-form-field>
+			</p>
+
+			<p *ngIf="error" class="error">
+				{{ error }}
+			</p>
+
+			<div class="button">
+				<button type="button" (click)="registro=true" mat-flat-button>Registrar</button>
+				<button [disabled]="!form.valid" type="submit" mat-flat-button color="primary">Iniciar Sesión</button>
+			</div>
+
+		</form>
+		<form *ngIf="registro" [formGroup]="form2" (ngSubmit)="submit2()">
+			<p>
+				<mat-form-field>
+					<input [(ngModel)]="registroInfo.username" type="text" matInput placeholder="Mail" formControlName="username">
+            </mat-form-field>
+			</p>
+			<p *ngIf="error" class="error">
+				{{ error }}
+			</p>
+
+			<div class="button">
+				<button type="button" (click)="registro=false" mat-flat-button>Iniciar sesión</button>
+				<button [disabled]="!form2.valid" type="submit" mat-flat-button color="primary">Registrar</button>
+			</div>
+
+		</form>
+	</mat-card-content>
+</mat-card>

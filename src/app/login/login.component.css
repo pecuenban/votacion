@@ -1,0 +1,27 @@
+mat-card.mat-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-width: 300px;
+  margin: auto;
+  height: 250px;
+  padding-top: 30px;
+}
+mat-card-title.mat-card-title {
+  text-align: center;
+}
+form > p > mat-form-field {
+  width: 80%;
+  margin: auto;
+  display: block;
+}
+.button {
+  text-align: right;
+  width: 80%;
+  margin: auto;
+}
+.button > button:last-child {
+  margin-left: 15px;
+}
