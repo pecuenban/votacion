@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
       error: error => {
         this.openSnackBar(
           "Error de autenticación, asegurate de estar registrado",
-          ""
+          "",
+          2000
         );
       }
     });
@@ -59,15 +60,21 @@ export class LoginComponent implements OnInit {
     this.conexionService.registro(this.registroInfo).subscribe({
       next: data => {
         console.log(data);
+        this.openSnackBar(
+          "Te has registrado correctamente, te hemos mandado un mail con la contraseña",
+          "",
+          5000
+        );
+        this.registro = false;
       },
       error: error => {
         console.error(error);
       }
     });
   }
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, dur: number) {
     this._snackBar.open(message, action, {
-      duration: 2000
+      duration: dur
     });
   }
 }
