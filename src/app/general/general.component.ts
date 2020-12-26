@@ -23,6 +23,23 @@ export class GeneralComponent implements OnInit {
       next: data => {
         let obj: any = data;
         this.votables = obj;
+        this.conexionService.misVotos().subscribe({
+          next: data => {
+            let obj2: any = data;
+            for (let i = 0; i < obj2.length; i++) {
+              for (let j = 0; j < this.votables.length; j++) {
+                if (this.votables[j].id == obj2[i].id_votable) {
+                  this.votables[j].votado = true;
+                  this.votados++;
+                }
+              }
+            }
+            console.log(data);
+          },
+          error: error => {
+            console.error(error);
+          }
+        });
       },
       error: error => {
         console.error(error);

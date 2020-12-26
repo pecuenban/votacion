@@ -36,4 +36,14 @@ export class ConexionService {
   votables() {
     return this.http.get(this.url + "/votable", this.httpOptions);
   }
+  misVotos() {
+    return this.http.get(
+      this.url +
+        "/votar/" +
+        localStorage.getItem("user") +
+        "/" +
+        localStorage.getItem("pass"),
+      this.httpOptions
+    );
+  }
 }
