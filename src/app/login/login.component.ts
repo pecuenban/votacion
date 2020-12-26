@@ -6,6 +6,8 @@ import {
   ReactiveFormsModule,
   FormsModule
 } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { ConexionService } from "../conexion.service";
 
 @Component({
@@ -21,7 +23,11 @@ export class LoginComponent implements OnInit {
     username: "",
     pass: ""
   };
-  constructor(protected conexionService: ConexionService) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    protected conexionService: ConexionService,
+    private router: Router
+  ) {}
   error: boolean = false;
   ngOnInit() {}
   registro = false;
@@ -36,10 +42,16 @@ export class LoginComponent implements OnInit {
   submit() {
     this.conexionService.autenticarUsuario(this.loginInfo).subscribe({
       next: data => {
+        localStorage.setItem("user", this.loginInfo.username);
+        localStorage.setItem("pass", this.loginInfo.pass);
+        this.router.navigate(["inicio"]);
         console.log(data);
       },
       error: error => {
-        console.error(error);
+        this.openSnackBar(
+          "Error de autenticación, asegurate de estar registrado",
+          ""
+        );
       }
     });
   }
@@ -51,6 +63,11 @@ export class LoginComponent implements OnInit {
       error: error => {
         console.error(error);
       }
+    });
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
     });
   }
 }
