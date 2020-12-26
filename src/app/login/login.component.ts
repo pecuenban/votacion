@@ -69,6 +69,11 @@ export class LoginComponent implements OnInit {
       },
       error: error => {
         console.error(error);
+        this.openSnackBar(
+          "Este mail ya está registrado, prueba con otro",
+          "",
+          3000
+        );
       }
     });
   }
