@@ -34,28 +34,28 @@ export class GeneralComponent implements OnInit {
   }
   votar(votable) {
     if (votable.votado) {
-      this.openSnackBar("Ya has votado este villancico", "");
+      this.openSnackBar("Ya has votado este villancico", "", 2000);
     } else {
       if (this.votados < this.total) {
         this.votados++;
         votable.votado = true;
         this.conexionService.votar(votable.id).subscribe({
           next: data => {
-            this.openSnackBar("Has votado correctamente", "Deshacer");
+            this.openSnackBar("Has votado correctamente", "Deshacer", 2000);
           },
           error: error => {
             console.error(error);
           }
         });
       } else {
-        this.openSnackBar("Ya has alcanzado el máximo de votos", "");
+        this.openSnackBar("Ya has alcanzado el máximo de votos", "", 2000);
       }
     }
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, time: number) {
     this._snackBar.open(message, action, {
-      duration: 2000
+      duration: time
     });
   }
 }
