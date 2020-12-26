@@ -39,7 +39,14 @@ export class GeneralComponent implements OnInit {
       if (this.votados < this.total) {
         this.votados++;
         votable.votado = true;
-        this.openSnackBar("Has votado correctamente", "Deshacer");
+        this.conexionService.votar(votable.id).subscribe({
+          next: data => {
+            this.openSnackBar("Has votado correctamente", "Deshacer");
+          },
+          error: error => {
+            console.error(error);
+          }
+        });
       } else {
         this.openSnackBar("Ya has alcanzado el máximo de votos", "");
       }
