@@ -54,11 +54,16 @@ export class GeneralComponent implements OnInit {
       this.openSnackBar("Ya has votado este villancico", "", 2000);
     } else {
       if (this.votados < this.total) {
-        this.votados++;
-        votable.votado = true;
         this.conexionService.votar(votable.id).subscribe({
           next: data => {
-            this.openSnackBar("Has votado correctamente", "Deshacer", 2000);
+            this.openSnackBarVotar(
+              "Has votado correctamente",
+              "Deshacer",
+              4000,
+              votable
+            );
+            this.votados++;
+            votable.votado = true;
           },
           error: error => {
             console.error(error);
@@ -69,7 +74,28 @@ export class GeneralComponent implements OnInit {
       }
     }
   }
-
+  openSnackBarVotar(
+    message: string,
+    action: string,
+    time: number,
+    votable: any
+  ) {
+    let ventana = this._snackBar.open(message, action, {
+      duration: time
+    });
+    ventana.onAction().subscribe(() => {
+      this.conexionService.desvotar(votable.id).subscribe({
+        next: data => {
+          this.openSnackBar("Eliminado el voto correctamente", "", 2000);
+          votable.votado = false;
+          this.votados--;
+        },
+        error: error => {
+          console.error(error);
+        }
+      });
+    });
+  }
   openSnackBar(message: string, action: string, time: number) {
     this._snackBar.open(message, action, {
       duration: time

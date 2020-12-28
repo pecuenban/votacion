@@ -25,6 +25,22 @@ export class ConexionService {
     return this.http.post(this.url + "/user", usuario, this.httpOptions);
   }
 
+  desvotar(id) {
+    let usuario = {
+      username: localStorage.getItem("user"),
+      pass: localStorage.getItem("pass")
+    };
+    return this.http.delete(
+      this.url +
+        "/votar/" +
+        id +
+        "/" +
+        localStorage.getItem("user") +
+        "/" +
+        localStorage.getItem("pass"),
+      this.httpOptions
+    );
+  }
   votar(id) {
     let usuario = {
       username: localStorage.getItem("user"),
