@@ -39,9 +39,9 @@ import { ConexionService } from "./conexion.service";
     MatDividerModule,
     MatCardModule,
     RouterModule.forRoot([
-      { path: "", component: LoginComponent },
-      { path: "inicio", component: GeneralComponent }
-    ])
+    { path: "", component: LoginComponent },
+    { path: "inicio", component: GeneralComponent }
+], { relativeLinkResolution: 'legacy' })
   ],
   declarations: [AppComponent, GeneralComponent, LoginComponent],
   bootstrap: [AppComponent],

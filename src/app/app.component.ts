@@ -1,4 +1,5 @@
 import { Component, VERSION } from "@angular/core";
+import { Plugins } from '@capacitor/core';
 
 @Component({
   selector: "my-app",
